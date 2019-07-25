@@ -1,11 +1,13 @@
 package com.example.flickster.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,17 +31,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        log.d("smile","onCreateViewHolder");
+        Log.d("smile","onCreateViewHolder");
         View view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        log.d("smile","onBindViewHolder"+ position);
+        Log.d("smile","onBindViewHolder"+ position);
         Movie movie = movies.get(position);
+       // movie.getTitle()
         // Bind the movie data into the view holder
-        holder.bind(movies);
+        holder.bind(movie);
 
     }
 
@@ -61,10 +64,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
            ivPoster = itemView.findViewById(R.id.ivPoster);
         }
 
-        public void bind(List<Movie> movie) {
+        public void bind(final Movie movie) {
           tvTitle.setText(movie.getTitle());
           tvOverview.setText(movie.getOverview());
           Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+          // Add Click listener on the whole row
+            // Navigate to detail activity
+          tvTitle.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  Toast.makeText(context, movie.getTitle(),Toast.LENGTH_LONG).show();
+              }
+          });
+
         }
     }
 }

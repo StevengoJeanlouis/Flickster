@@ -8,6 +8,7 @@ import android.icu.lang.UCharacter;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.flickster.adapters.MovieAdapter;
 import com.example.flickster.models.Movie;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -27,12 +28,12 @@ public class MovieActivity extends AppCompatActivity {
 
     List<Movie> movies;
 
-   // Add RecyclerView support library to the Gradle build file - DONE
-  //  Define a model class to use as the data source - DONE
+    // Add RecyclerView support library to the Gradle build file - DONE
+    //  Define a model class to use as the data source - DONE
     // Add a RecyclerView to your activity to display the items - DONE
     // Create a custom row layout XML file to visualize the item - DONE
     // Create a RecyclerView.Adapter and ViewHolder to render the item - DONE
-   // Bind the adapter to the data source to populate the RecyclerView
+    // Bind the adapter to the data source to populate the RecyclerView - DONE
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie);
        RecyclerView rvMovies = findViewById(R.id.rvMovies);
        movies = new ArrayList<>();
-       final MoviesAdapter adapter = new MoviesAdapter(this, movies);
+       final MovieAdapter adapter = new MovieAdapter(this, movies);
        rvMovies.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
        rvMovies.setAdapter(adapter);
 
@@ -51,7 +52,7 @@ public class MovieActivity extends AppCompatActivity {
                 try {
                     JSONArray movieJsonArray = response.getJSONArray("results");
                     movies.addAll(Movie.fromJsonArray(movieJsonArray));
-                    adapter.notifyDatasetChanged();
+                    adapter.notifyDataSetChanged();
                     Log.d("smile", movies.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
