@@ -68,7 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
           tvTitle.setText(movie.getTitle());
           tvOverview.setText(movie.getOverview());
           Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
-          // Add Click listener on the whole row
+            // Add Click listener on the whole row
             // Navigate to detail activity
           tvTitle.setOnClickListener(new View.OnClickListener() {
               @Override

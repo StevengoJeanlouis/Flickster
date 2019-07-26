@@ -24,12 +24,13 @@ import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
 
-    private static final  String MOVIE_URL = "https://pi.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    private static final  String MOVIE_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     List<Movie> movies;
 
+
     // Add RecyclerView support library to the Gradle build file - DONE
-    //  Define a model class to use as the data source - DONE
+    // Define a model class to use as the data source - DONE
     // Add a RecyclerView to your activity to display the items - DONE
     // Create a custom row layout XML file to visualize the item - DONE
     // Create a RecyclerView.Adapter and ViewHolder to render the item - DONE
@@ -42,7 +43,7 @@ public class MovieActivity extends AppCompatActivity {
        RecyclerView rvMovies = findViewById(R.id.rvMovies);
        movies = new ArrayList<>();
        final MovieAdapter adapter = new MovieAdapter(this, movies);
-       rvMovies.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+       rvMovies.setLayoutManager(new LinearLayoutManager(this,  RecyclerView.VERTICAL,false));
        rvMovies.setAdapter(adapter);
 
         AsyncHttpClient client = new AsyncHttpClient();
